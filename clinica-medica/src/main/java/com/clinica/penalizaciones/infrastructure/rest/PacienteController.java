@@ -36,8 +36,8 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteResponse> obtenerPaciente(@PathVariable UUID pacienteId) {
-        return ResponseEntity.ok(obtenerPacienteUseCase.execute(pacienteId));
+    public ResponseEntity<PacienteResponse> obtenerPaciente(@PathVariable UUID id) {
+        return ResponseEntity.ok(obtenerPacienteUseCase.execute(id));
     }
 
     @PutMapping("/{id}")

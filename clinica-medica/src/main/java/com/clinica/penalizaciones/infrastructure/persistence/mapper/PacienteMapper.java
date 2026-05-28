@@ -13,6 +13,7 @@ public interface PacienteMapper {
         if(paciente == null)
             return null;
         return PacienteJpaEntity.builder()
+                .pacienteId(paciente.getPacienteID()) // <- FALTABA ESTO
                 .tipoDocumento(paciente.getTipoDocumento())
                 .numDocumento(paciente.getNumDocumento())
                 .nombres(paciente.getNombres())
@@ -32,6 +33,6 @@ public interface PacienteMapper {
                 entity.getNombres(),
                 entity.getApellidos(),
                 entity.getEdad(),
-                entity.getEstado());
+                EstadoPaciente.valueOf(entity.getEstado()));
     }
 }

@@ -1,7 +1,10 @@
 package com.clinica.penalizaciones.domain.model;
 
+import lombok.Getter;
+
 import java.util.UUID;
 
+@Getter
 public class Paciente {
 
     private UUID pacienteID;
@@ -20,7 +23,7 @@ public class Paciente {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.edad = edad;
-        this.estado = EstadoPaciente.ACTIVO;
+        this.estado = estado;
     }
     public Paciente( Integer tipoDocumento, String numDocumento,
                     String nombres, String apellidos, Integer edad, EstadoPaciente estado) {
@@ -29,45 +32,7 @@ public class Paciente {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.edad = edad;
-        this.estado = EstadoPaciente.ACTIVO;
+        this.estado = estado;
     }
 
-    public Paciente(UUID pacienteId, Integer tipoDocumento, String numDocumento, String nombres, String apellidos, Integer edad, String estado) {
-        this.pacienteID = pacienteID;
-        this.tipoDocumento = tipoDocumento;
-        this.numDocumento = numDocumento;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.edad = edad;
-        this.estado = EstadoPaciente.ACTIVO;
-    }
-
-
-    public Integer getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public UUID getPacienteID() {
-        return pacienteID;
-    }
-
-    public String getNumDocumento() {
-        return numDocumento;
-    }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public Integer getEdad() {
-        return edad;
-    }
-
-    public EstadoPaciente getEstado() {
-        return estado;
-    }
 }
