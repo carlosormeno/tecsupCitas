@@ -1,17 +1,19 @@
 package com.clinica.disponibilidadMedica.infrastructure.persistence.jpa;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "doctores")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class DoctorJpaEntity {
 
     @Id
@@ -26,10 +28,4 @@ public class DoctorJpaEntity {
     @Column(name = "especialidad_id", nullable = false)
     private UUID especialidadId;
 
-    public DoctorJpaEntity(UUID id, String nombre, String apellido, UUID especialidadId) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.especialidadId = especialidadId;
-    }
 }
