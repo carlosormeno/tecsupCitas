@@ -32,12 +32,25 @@ public class Cita {
     }
 
     public void confirmar() {
+        if (this.estado == EstadoCita.CANCELADA) {
+            throw new com.clinica.citas.domain.exception.CitaException("No se puede confirmar una cita cancelada");
+        }
+        this.estado = EstadoCita.CONFIRMADA;
     }
 
     public void cancelar() {
+        if (this.estado == EstadoCita.CANCELADA) {
+            throw new com.clinica.citas.domain.exception.CitaException("La cita ya está cancelada");
+        }
+        this.estado = EstadoCita.CANCELADA;
     }
 
     public void reagendar(FechaHoraCita nuevaFechaHora) {
+        if (this.estado == EstadoCita.CANCELADA) {
+            throw new com.clinica.citas.domain.exception.CitaException("No se puede reagendar una cita cancelada");
+        }
+        this.fechaHora = nuevaFechaHora;
+        this.estado = EstadoCita.REAGENDADA;
     }
 
     public UUID getId() { return id; }

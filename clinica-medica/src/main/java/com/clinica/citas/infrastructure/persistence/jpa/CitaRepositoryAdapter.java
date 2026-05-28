@@ -19,33 +19,48 @@ public class CitaRepositoryAdapter implements CitaRepository {
 
     @Override
     public Cita save(Cita cita) {
-        return null;
+        return toDomain(jpaRepository.save(toEntity(cita)));
     }
 
     @Override
     public Optional<Cita> findById(UUID id) {
-        return Optional.empty();
+        return jpaRepository.findById(id).map(this::toDomain);
     }
 
     @Override
     public List<Cita> findByPacienteId(UUID pacienteId) {
-        return List.of();
+        return jpaRepository.findByPacienteId(pacienteId).stream().map(this::toDomain).toList();
     }
 
     @Override
     public List<Cita> findByDoctorId(UUID doctorId) {
-        return List.of();
+        return jpaRepository.findByDoctorId(doctorId).stream().map(this::toDomain).toList();
     }
 
     @Override
     public void deleteById(UUID id) {
+        jpaRepository.deleteById(id);
     }
 
     private CitaJpaEntity toEntity(Cita cita) {
-        return null;
+        return new CitaJpaEntity(
+                cita.getId(),
+                cita.getPacienteId(),
+                cita.getDoctorId(),
+                cita.getEspecialidadId(),
+                cita.getFechaHora().getValor(),
+                cita.getEstado().name()
+        );
     }
 
     private Cita toDomain(CitaJpaEntity entity) {
-        return null;
+        return new Cita(
+                entity.getId(),
+                entity.getPacienteId(),
+                entity.getDoctorId(),
+                entity.getEspecialidadId(),
+                new com.clinica.citas.domain.model.FechaHoraCita(entity.getFechaHora()),
+                com.clinica.citas.domain.model.EstadoCita.valueOf(entity.getEstado())
+        );
     }
 }
