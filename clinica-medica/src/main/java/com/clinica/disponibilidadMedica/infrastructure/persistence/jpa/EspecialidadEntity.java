@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
 public class EspecialidadEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     @Column(nullable = false)

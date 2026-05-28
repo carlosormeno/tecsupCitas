@@ -2,6 +2,9 @@ package com.clinica.citas.application.usecase.impl;
 
 import com.clinica.citas.application.dto.CitaResponse;
 import com.clinica.citas.application.usecase.ReagendarCitaUseCase;
+import com.clinica.citas.domain.exception.CitaException;
+import com.clinica.citas.domain.model.Cita;
+import com.clinica.citas.domain.model.FechaHoraCita;
 import com.clinica.citas.domain.repository.CitaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +22,11 @@ public class ReagendarCitaUseCaseImpl implements ReagendarCitaUseCase {
     @Transactional
     @Override
     public CitaResponse execute(UUID citaId, LocalDateTime nuevaFechaHora) {
-        // TODO: buscar cita por id, lanzar CitaException si no existe
-        // TODO: llamar cita.reagendar(nuevaFechaHora)
-        // TODO: persistir con citaRepository.save()
-        // TODO: mapear Cita → CitaResponse y retornar
-        return null;
+        Cita cita = citaRepository.findById(citaId)
+                .orElseThrow(() -> new CitaException("Cita no encontrada: " + citaId));
+        cita.reagendar(new FechaHoraCita(nuevaFechaHora));
+        Cita guardada = citaRepository.save(cita);
+        return new CitaResponse(guardada.getId(), guardada.getPacienteId(), guardada.getDoctorId(),
+                guardada.getEspecialidadId(), guardada.getFechaHora().getValor(), guardada.getEstado());
     }
 }
