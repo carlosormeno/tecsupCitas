@@ -19,6 +19,8 @@ public class Especialidad {
     }
 
     public Especialidad(String nombre, BigDecimal costo) {
+        validarNombre(nombre);
+        validarCosto(costo);
         this.id = UUID.randomUUID();
         this.nombre = nombre;
         this.costo = costo;
