@@ -9,17 +9,17 @@ import com.clinica.citas.application.usecase.impl.CancelarCitaUseCaseImpl;
 import com.clinica.citas.application.usecase.impl.ConfirmarCitaUseCaseImpl;
 import com.clinica.citas.application.usecase.impl.ReagendarCitaUseCaseImpl;
 import com.clinica.citas.domain.repository.CitaRepository;
-import com.clinica.disponibilidadMedica.application.usecase.ActualizarDoctorUseCase;
-import com.clinica.disponibilidadMedica.application.usecase.CrearDoctorUseCase;
-import com.clinica.disponibilidadMedica.application.usecase.EliminarDoctorUseCase;
-import com.clinica.disponibilidadMedica.application.usecase.ListarDoctoresUseCase;
-import com.clinica.disponibilidadMedica.application.usecase.ObtenerDoctorUseCase;
-import com.clinica.disponibilidadMedica.application.usecase.impl.ActualizarDoctorUseCaseImpl;
-import com.clinica.disponibilidadMedica.application.usecase.impl.CrearDoctorUseCaseImpl;
-import com.clinica.disponibilidadMedica.application.usecase.impl.EliminarDoctorUseCaseImpl;
-import com.clinica.disponibilidadMedica.application.usecase.impl.ListarDoctoresUseCaseImpl;
-import com.clinica.disponibilidadMedica.application.usecase.impl.ObtenerDoctorUseCaseImpl;
+import com.clinica.disponibilidadMedica.application.usecase.*;
+import com.clinica.disponibilidadMedica.application.usecase.impl.*;
 import com.clinica.disponibilidadMedica.domain.repository.DoctorRepository;
+import com.clinica.disponibilidadMedica.domain.repository.EspecialidadRepository;
+import com.clinica.penalizaciones.application.usecase.ModificarPacienteUseCase;
+import com.clinica.penalizaciones.application.usecase.ObtenerPacienteUseCase;
+import com.clinica.penalizaciones.application.usecase.RegistrarPacienteUseCase;
+import com.clinica.penalizaciones.application.usecase.impl.ModificarPacienteUseCaseImpl;
+import com.clinica.penalizaciones.application.usecase.impl.ObtenerPacienteUseCaseImpl;
+import com.clinica.penalizaciones.application.usecase.impl.RegistrarPacienteUseCaseImpl;
+import com.clinica.penalizaciones.domain.repository.PacienteRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -76,4 +76,26 @@ public class BeanConfiguration {
     public EliminarDoctorUseCase eliminarDoctorUseCase(DoctorRepository doctorRepository) {
         return new EliminarDoctorUseCaseImpl(doctorRepository);
     }
+
+    // ──  Disponibilidad Médica(especialidades) ─────────────────────────────────────
+    @Bean
+    public ListarEspecialidadesUseCase listarEspecialidadesUseCase(EspecialidadRepository especialidadRepository){
+        return new ListarEspecialidadesUseCaseImpl(especialidadRepository);
+    }
+
+    // ── Penalizaciones (paciente) ─────────────────────────────────────
+    @Bean
+    public RegistrarPacienteUseCase registrarPacienteUseCase(PacienteRepository pacienteRepository){
+        return new RegistrarPacienteUseCaseImpl(pacienteRepository);
+    }
+    @Bean
+    public ModificarPacienteUseCase modificarPacienteUseCase(PacienteRepository pacienteRepository){
+        return new ModificarPacienteUseCaseImpl(pacienteRepository);
+    }
+
+    @Bean
+    public ObtenerPacienteUseCase obtenerPacienteUseCase(PacienteRepository pacienteRepository){
+        return new ObtenerPacienteUseCaseImpl(pacienteRepository);
+    }
+
 }
