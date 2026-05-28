@@ -3,6 +3,7 @@ package com.clinica.disponibilidadMedica.application.usecase.impl;
 import com.clinica.disponibilidadMedica.application.dto.CrearDoctorRequest;
 import com.clinica.disponibilidadMedica.application.dto.DoctorResponse;
 import com.clinica.disponibilidadMedica.application.usecase.CrearDoctorUseCase;
+import com.clinica.disponibilidadMedica.domain.model.Doctor;
 import com.clinica.disponibilidadMedica.domain.repository.DoctorRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +18,12 @@ public class CrearDoctorUseCaseImpl implements CrearDoctorUseCase {
     @Transactional
     @Override
     public DoctorResponse execute(CrearDoctorRequest request) {
-        // TODO: crear Doctor con los datos del request
-        // TODO: persistir con doctorRepository.save()
-        // TODO: mapear Doctor → DoctorResponse y retornar
-        return null;
+        Doctor doctor = new Doctor(request.nombre(), request.apellido(), request.especialidadId());
+        Doctor guardado = doctorRepository.save(doctor);
+        return toResponse(guardado);
+    }
+
+    private DoctorResponse toResponse(Doctor doctor) {
+        return new DoctorResponse(doctor.getId(), doctor.getNombre(), doctor.getApellido(), doctor.getEspecialidadId());
     }
 }

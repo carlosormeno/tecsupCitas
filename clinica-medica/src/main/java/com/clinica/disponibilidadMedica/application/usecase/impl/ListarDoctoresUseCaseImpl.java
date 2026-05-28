@@ -18,8 +18,8 @@ public class ListarDoctoresUseCaseImpl implements ListarDoctoresUseCase {
     @Transactional(readOnly = true)
     @Override
     public List<DoctorResponse> execute() {
-        // TODO: obtener todos los doctores con doctorRepository.findAll()
-        // TODO: mapear cada Doctor → DoctorResponse y retornar lista
-        return List.of();
+        return doctorRepository.findAll().stream()
+                .map(d -> new DoctorResponse(d.getId(), d.getNombre(), d.getApellido(), d.getEspecialidadId()))
+                .toList();
     }
 }

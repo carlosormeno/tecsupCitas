@@ -19,34 +19,29 @@ public class DoctorRepositoryAdapter implements DoctorRepository {
 
     @Override
     public Doctor save(Doctor doctor) {
-        // TODO: convertir Doctor → DoctorJpaEntity, persistir y retornar Doctor
-        return null;
+        return toDomain(jpaRepository.save(toEntity(doctor)));
     }
 
     @Override
     public Optional<Doctor> findById(UUID id) {
-        // TODO: buscar entity y mapear a Doctor
-        return Optional.empty();
+        return jpaRepository.findById(id).map(this::toDomain);
     }
 
     @Override
     public List<Doctor> findAll() {
-        // TODO: obtener todas las entities y mapear a lista de Doctor
-        return List.of();
+        return jpaRepository.findAll().stream().map(this::toDomain).toList();
     }
 
     @Override
     public void deleteById(UUID id) {
-        // TODO: jpaRepository.deleteById(id)
+        jpaRepository.deleteById(id);
     }
 
     private DoctorJpaEntity toEntity(Doctor doctor) {
-        // TODO: mapear campos de Doctor a DoctorJpaEntity
-        return null;
+        return new DoctorJpaEntity(doctor.getId(), doctor.getNombre(), doctor.getApellido(), doctor.getEspecialidadId());
     }
 
     private Doctor toDomain(DoctorJpaEntity entity) {
-        // TODO: mapear campos de DoctorJpaEntity a Doctor
-        return null;
+        return new Doctor(entity.getId(), entity.getNombre(), entity.getApellido(), entity.getEspecialidadId());
     }
 }
