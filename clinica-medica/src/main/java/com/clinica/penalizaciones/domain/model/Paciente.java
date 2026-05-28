@@ -10,7 +10,6 @@ public class Paciente {
     private String nombres;
     private String apellidos;
     private Integer edad;
-    private boolean tieneAlergias;
     private EstadoPaciente estado;
 
     public Paciente( UUID pacienteID, Integer tipoDocumento, String numDocumento,

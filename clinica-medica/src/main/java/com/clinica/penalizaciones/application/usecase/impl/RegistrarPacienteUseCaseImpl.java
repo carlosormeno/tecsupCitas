@@ -21,6 +21,8 @@ public class RegistrarPacienteUseCaseImpl implements RegistrarPacienteUseCase {
         Paciente paciente = new Paciente(request.tipoDocumento(), request.numDocumento(),request.nombres(), request.apellidos(),
                 request.edad(), request.estado());
         Paciente guardado = pacienteRepository.save(paciente);
+
+        System.out.println(guardado.getPacienteID());
         return toResponse(guardado);
     }
 

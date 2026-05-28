@@ -21,12 +21,13 @@ public class PacienteRepositoryAdapter implements PacienteRepository {
 
     @Override
     public Paciente save(Paciente paciente) {
-        return null;
+
+        return pacienteMapper.toDomain(jpaRepository.save(pacienteMapper.toEntity(paciente)));
     }
 
     @Override
     public Optional<Paciente> findById(UUID pacienteId) {
-        return Optional.empty();
+        return jpaRepository.findById(pacienteId).map(pacienteMapper::toDomain);
     }
 
 

@@ -1,9 +1,6 @@
 package com.clinica.penalizaciones.infrastructure.persistence.jpa;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -17,7 +14,8 @@ import java.util.UUID;
 public class PacienteJpaEntity {
 
     @Id
-    @Column(name = "paciente_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "paciente_id")
     private UUID pacienteId;
 
     @Column(nullable = false)
