@@ -1,8 +1,13 @@
 package com.clinica.citas.domain.model;
 
+import com.clinica.citas.domain.exception.CitaException;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Cita {
+
+    public static final int DURACION_MINUTOS = 30;
 
     private UUID id;
     private UUID pacienteId;
@@ -31,23 +36,33 @@ public class Cita {
         this.estado = estado;
     }
 
+    public static void validarLimitePendientes(long citasPendientes) {
+        if (citasPendientes >= 3) {
+            throw new CitaException("El paciente ya tiene 3 citas pendientes, no puede agendar más");
+        }
+    }
+
     public void confirmar() {
         if (this.estado == EstadoCita.CANCELADA) {
-            throw new com.clinica.citas.domain.exception.CitaException("No se puede confirmar una cita cancelada");
+            throw new CitaException("No se puede confirmar una cita cancelada");
         }
         this.estado = EstadoCita.CONFIRMADA;
     }
 
+    public boolean generaPenalizacionAlCancelar() {
+        return LocalDateTime.now().isAfter(this.fechaHora.getValor().minusHours(4));
+    }
+
     public void cancelar() {
         if (this.estado == EstadoCita.CANCELADA) {
-            throw new com.clinica.citas.domain.exception.CitaException("La cita ya está cancelada");
+            throw new CitaException("La cita ya está cancelada");
         }
         this.estado = EstadoCita.CANCELADA;
     }
 
     public void reagendar(FechaHoraCita nuevaFechaHora) {
         if (this.estado == EstadoCita.CANCELADA) {
-            throw new com.clinica.citas.domain.exception.CitaException("No se puede reagendar una cita cancelada");
+            throw new CitaException("No se puede reagendar una cita cancelada");
         }
         this.fechaHora = nuevaFechaHora;
         this.estado = EstadoCita.REAGENDADA;
