@@ -1,0 +1,246 @@
+{
+  "info": {
+    "_postman_id": "00b1dcb1-b9c8-4b56-b70a-fc7763663345",
+    "name": "CITAS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1842278"
+  },
+  "item": [
+    {
+      "name": "localhost:8080/api/pacientes",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \r\n    \"tipoDocumento\":4,\r\n    \"numDocumento\":\"445085544\",\r\n    \"nombres\":\"Maria\",\r\n    \"apellidos\":\"Sandoval Vasquez\",\r\n    \"edad\":28     ,\r\n    \"estado\": \"ACTIVO\" \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/pacientes",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pacientes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8080/api/pacientes/13bc5d37-085a-4951-9e21-383396ba2a0a",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/api/pacientes/13bc5d37-085a-4951-9e21-383396ba2a0a",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pacientes",
+            "13bc5d37-085a-4951-9e21-383396ba2a0a"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8080/api/doctores",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nombre\": \"carlos\",\r\n    \"apellido\": \"Atencio\",\r\n    \"especialidadId\":\"2482ef85-5591-49ee-962b-8f6ff6189bfa\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/doctores",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "doctores"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8080/api/especialidades",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/api/especialidades",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "especialidades"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8080/api/citas",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"pacienteId\":\"498177c4-4cf1-476c-9729-a0121ca773a3\",\r\n    \"doctorId\":\"676c753d-b452-4d19-ad6b-d32963cb5af9\",\r\n    \"especialidadId\":\"b6a81e58-e913-4eac-ac6e-e99d644a3aac\",\r\n    \"fechaHora\": \"2026-05-30T22:30:00\"\r\n}\r\n\t\r\n    \t",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/citas",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8080/api/citas",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"pacienteId\":\"536d2df0-ec53-4eb8-9523-5effaf546777\",\r\n    \"doctorId\":\"3eda635e-012b-46b9-88b8-bc92be79f87d\",\r\n    \"especialidadId\":\"2ebdbb82-1195-4806-ab52-fb65bc9df743\",\r\n    \"fechaHora\": \"2026-05-27T09:35:00\"\r\n}\r\n\r\n\t",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/citas",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8080/api/citas/e8479db3-a08c-4f89-abc9-f728aea09c39/cancelar",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/citas/8c3250db-41e2-49dc-975b-38363eba1c5c/cancelar",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas",
+            "8c3250db-41e2-49dc-975b-38363eba1c5c",
+            "cancelar"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8080/api/citas/70a17b5f-0fe2-4917-8c18-8cdf6660c6fd/confirmar",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"pacienteId\":\"536d2df0-ec53-4eb8-9523-5effaf546777\",\r\n    \"doctorId\":\"3eda635e-012b-46b9-88b8-bc92be79f87d\",\r\n    \"especialidadId\":\"2ebdbb82-1195-4806-ab52-fb65bc9df743\",\r\n    \"fechaHora\": \"2026-05-27T09:35:00\"\r\n}\r\n\r\n\t"
+        },
+        "url": {
+          "raw": "localhost:8080/api/citas/92e64fb0-a574-471e-bf79-bc4b4b8a5d92/confirmar",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas",
+            "92e64fb0-a574-471e-bf79-bc4b4b8a5d92",
+            "confirmar"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "localhost:8080/api/citas/81cdc99f-6692-4d88-be2f-bc749838a3ac/reagendar",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nuevaFechaHora\": \"2026-05-27T11:35:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/citas/81cdc99f-6692-4d88-be2f-bc749838a3ac/reagendar",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "citas",
+            "81cdc99f-6692-4d88-be2f-bc749838a3ac",
+            "reagendar"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
